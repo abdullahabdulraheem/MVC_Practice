@@ -74,6 +74,7 @@ namespace MVC_Practice.Controllers
             return RedirectToAction("List", "Students");
         }
 
+        [HttpPost]
         public async Task<IActionResult> Delete(Student viewModel)
         {
             var student = await dbContext.Students
