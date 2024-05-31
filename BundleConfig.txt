@@ -1,0 +1,79 @@
+In **ASP.NET Core**, the `bundleconfig.cs` file, which was used for bundling and minification in **ASP.NET MVC**, has been replaced with a more flexible and modern approach. Let's explore how to achieve similar functionality in ASP.NET Core:
+
+1. **BundleConfig.cs Replacement**:
+   - In ASP.NET Core, you no longer need a separate `bundleconfig.cs` file. Instead, you can configure bundling and minification directly in your project using a `bundleconfig.json` file.
+   - The `bundleconfig.json` file defines bundles (groups of files) that you want to bundle and minify. Each bundle specifies input files and an output file.
+   - This approach allows you to manage your bundles more efficiently and integrates well with the new ASP.NET Core structure.
+
+2. **Steps to Set Up Bundling and Minification**:
+   - Follow these steps to add bundling and minification to your ASP.NET Core project:
+     1. **Install the Bundler and Minifier Extension**:
+        - In Visual Studio, install the "Bundler & Minifier" extension.
+        - You can do this by going to **Extensions > Manage Extensions** and searching for "Bundler & Minifier."
+     2. **Create a bundleconfig.json File**:
+        - Under your project's root folder, create a new file named `bundleconfig.json`.
+        - In this file, define your bundles. Each bundle specifies input files and an output file.
+        - Example `bundleconfig.json` content:
+          ```json
+          [
+            {
+              "outputFileName": "wwwroot/bundles/bootstrap",
+              "inputFiles": [
+                "Scripts/bootstrap.js"
+              ]
+            },
+            {
+              "outputFileName": "wwwroot/css/site.min.css",
+              "inputFiles": [
+                "wwwroot/css/site.css",
+                "Content/bootstrap.css"
+              ],
+              "minify": {
+                "enabled": true,
+                "renameLocals": true
+              },
+              "sourceMap": false
+            }
+          ]
+          ```
+     3. **Configure Your Views**:
+        - In your views (Razor files), reference the bundled files using the paths specified in `bundleconfig.json`.
+        - For example, if you have a bundle named `"bootstrap"`, use it like this:
+          ```html
+          <script src="~/bundles/bootstrap"></script>
+          ```
+     4. **Build and Run**:
+        - Build your project, and the bundler will generate the bundled and minified files based on your configuration.
+        - The output files will be placed in the specified output paths (e.g., `wwwroot/bundles`).
+
+3. **Automating Bundling and Minification**:
+   - You can automate the bundling and minification process as part of the build process using the `dotnet bundle` command.
+   - However, this part requires additional setup, and you may need to explore it further based on your project's needs.
+
+Remember that the `bundleconfig.json` approach provides more flexibility and better aligns with modern development practices in ASP.NET Core. It allows you to manage your bundles efficiently while benefiting from the improved performance of minified and bundled assets¹³.
+
+Source: Conversation with Copilot, 5/23/2024
+(1) How to migrate bundleConfig.cs from project asp.net mvc to asp.net core .... https://stackoverflow.com/questions/62087210/how-to-migrate-bundleconfig-cs-from-project-asp-net-mvc-to-asp-net-core.
+(2) Net Core 2: Convert BundleConfig.cs to BundleConfig.json. https://stackoverflow.com/questions/55274145/net-core-2-convert-bundleconfig-cs-to-bundleconfig-json.
+(3) How do I add BundleConfig.cs to my project? - Stack Overflow. https://stackoverflow.com/questions/21668280/how-do-i-add-bundleconfig-cs-to-my-project.
+(4) Has something replaced bundleconfig.json in ASP.NET Core MVC 2.1?. https://stackoverflow.com/questions/50419033/has-something-replaced-bundleconfig-json-in-asp-net-core-mvc-2-1.
+
+
+
+
+
+                                              SHITS
+
+
+
+        // private readonly ILogger<StudentsController> _logger;
+
+        // public StudentsController(ILogger<StudentsController> logger)
+        // {
+        //     _logger = logger;
+        // }
+
+        // public IActionResult Index(AddStudentsView viewModel)
+        // {
+        //     return View();
+        // }

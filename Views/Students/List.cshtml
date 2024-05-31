@@ -1,0 +1,30 @@
+@model List<MVC_Practice.Models.Student>
+
+<h1>List of Students</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>Student Id</td>
+            <td>Name</td>
+            <td>Email Adress</td>
+            <td>State</td>
+            <td>Age</td>
+            <td>Present</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.StudentId</td>
+                <td>@student.StudentName</td>
+                <td>@student.Email</td>
+                <td>@student.State</td>
+                <td>@student.Age</td>
+                <td>@student.Present</td>
+                <td><a class="btn btn-primary" asp-controller="Students" asp-action="Edit" asp-route-id="@student.StudentId">Edit</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
